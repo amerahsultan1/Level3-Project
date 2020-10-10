@@ -3,4 +3,4 @@ kind: ServiceAccount
 metadata:
   name: amerah-docker-hub
 secrets:
-  - name: amerah-docker-hub-creds
+  - name: regcred
