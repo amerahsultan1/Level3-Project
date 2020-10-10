@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: amerah-docker-hub
-secrets:
-  - name: regcred
