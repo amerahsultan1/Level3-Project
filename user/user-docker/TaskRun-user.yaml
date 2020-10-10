@@ -8,7 +8,7 @@ spec:
     name: user
   params:
   - name: IMAGE
-    value: "amerahsultan1/users"
+    value: "amerahsultan1/user"
   resources:
     inputs:
     - name: level3-project
