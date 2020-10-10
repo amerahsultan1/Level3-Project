@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: dockr-runner
+spec:
+  serviceAccountName: amerah-docker-hub
+  taskRef:
+    name: dockr
+  params:
+  - name: IMAGE
+    value: "amerahsultan1/users"
+  resources:
+    inputs:
+    - name: users
+      resourceRef:
+        name: users
