@@ -11,6 +11,6 @@ spec:
     value: "amerahsultan1/users"
   resources:
     inputs:
-    - name: users
+    - name: level3-project
       resourceRef:
-        name: users
+        name: level3-project
