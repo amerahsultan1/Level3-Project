@@ -1,15 +1,13 @@
-FROM bryandollery/maven-repo as build
-WORKDIR /tmp
+FROM maven as build
 
-copy src /tmp/src
-copy pom.xml /tmp/
+copy . /shipping
+WORKDIR /shipping
+RUN mvn -DskipTests package
 
-run mvn clean package
 
 FROM weaveworksdemos/msd-java:jre-latest
 
-WORKDIR /usr/src/app
-COPY *.jar ./app.jar
+COPY --from=build /shipping/target/*.jar ./app.jar
 
 RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
 
