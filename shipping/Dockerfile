@@ -1,17 +1,15 @@
-# syntax=docker/dockerfile:experimental
-FROM maven:3-jdk-11 as build
-WORKDIR /tmp
+FROM maven as build
 
-copy src /tmp/src
-copy pom.xml /tmp/
+copy . /shipping
+WORKDIR /shipping
+RUN mvn -DskipTests package
 
-run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
 
-from adoptopenjdk/openjdk11:alpine
+FROM weaveworksdemos/msd-java:jre-latest
 
-COPY --from=build /tmp/target/shipping.jar /shipping.jar
+COPY --from=build /shipping/target/*.jar ./app.jar
 
-run chmod a+rx ./shipping.jar
+RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
 
 USER ${SERVICE_USER}
 
@@ -19,7 +17,7 @@ ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG COMMIT
 
-LABEL org.label-schema.vendor="bryandollery" \
+LABEL org.label-schema.vendor="Weaveworks" \
   org.label-schema.build-date="${BUILD_DATE}" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: Shipping" \
@@ -29,4 +27,4 @@ LABEL org.label-schema.vendor="bryandollery" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 
-ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./shipping.jar", "--port=80"]
+ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
