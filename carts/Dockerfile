@@ -1,17 +1,17 @@
-FROM maven as build
+# syntax=docker/dockerfile:experimental
+FROM maven:3-jdk-11 as build
+WORKDIR /tmp
 
-copy . /carts
+copy src /tmp/src
+copy pom.xml /tmp/
 
-WORKDIR /carts
+run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
 
-RUN mvn -DskipTests package
+from adoptopenjdk/openjdk11:alpine
 
+COPY --from=build /tmp/target/carts.jar /carts.jar
 
-FROM weaveworksdemos/msd-java:jre-latest
-
-COPY --from=build /carts/target/*.jar ./app.jar
-
-RUN     chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
+run chmod a+rx ./carts.jar
 
 USER ${SERVICE_USER}
 
@@ -19,21 +19,14 @@ ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG COMMIT
 
-LABEL org.label-schema.vendor="Weaveworks" \
+LABEL org.label-schema.vendor="amerahsultan1" \
   org.label-schema.build-date="${BUILD_DATE}" \
   org.label-schema.version="${BUILD_VERSION}" \
-  org.label-schema.name="Socks Shop: Cart" \
-  org.label-schema.description="REST API for Cart service" \
+  org.label-schema.name="Socks Shop: carts" \
+  org.label-schema.description="REST API for carts service" \
   org.label-schema.url="https://github.com/microservices-demo/carts" \
   org.label-schema.vcs-url="github.com:microservices-demo/carts.git" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 
-ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
-
-#FROM java:openjdk-8-alpine
-
-#WORKDIR /usr/src/app
-#COPY ./target/*.jar ./app.jar
-
-#ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./app.jar", "--port=80"]
+ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./carts.jar", "--port=80"]
