@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: front-end
+  name: front-end-resource
 spec:
   type: git
   params:

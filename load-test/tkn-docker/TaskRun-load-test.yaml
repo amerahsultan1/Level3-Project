@@ -13,4 +13,5 @@ spec:
     inputs:
     - name: level3-project
       resourceRef:
-        name: level3-project
+        name: load-test-resource
+

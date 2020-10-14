@@ -1,16 +1,17 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: shipping-runner
+  name: queue-master-runner
 spec:
-  serviceAccountName: shipping-docker-hub
+  serviceAccountName: queue-master-docker-hub
   taskRef:
-    name: shipping
+    name: queue-master 
   params:
   - name: IMAGE
-    value: "amerahsultan1/shipping"
+    value: "amerahsultan1/queue-master"
   resources:
     inputs:
     - name: level3-project
       resourceRef:
-        name: level3-project
+        name: queue-master-resource
+
