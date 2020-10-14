@@ -6,4 +6,5 @@ COPY default.nix /e2etest
 RUN nix-env -f /e2etest -i e2etest
 
 COPY tests/* /e2etests/tests/
+# RUN chmod +x e2etest
 CMD ["sh", "-c", "e2etest /e2etests/tests/*"]
