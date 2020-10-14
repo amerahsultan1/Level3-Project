@@ -1,14 +1,13 @@
 FROM maven:3-jdk-8 as build
-WORKDIR /tmp
+WORKDIR /carts
 
-copy src /tmp/src
-copy pom.xml /tmp/
+copy . /carts
 
 RUN mvn clean package
 
 from adoptopenjdk/openjdk8:alpine
 
-COPY --from=build /tmp/target/carts.jar /carts.jar
+COPY --from=build /carts/target/carts.jar /carts.jar
 
 run chmod a+rx ./carts.jar
 
