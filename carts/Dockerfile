@@ -6,7 +6,7 @@ copy pom.xml /tmp/
 
 RUN mvn clean package
 
-from adoptopenjdk/openjdk11:alpine
+from adoptopenjdk/openjdk8:alpine
 
 COPY --from=build /tmp/target/carts.jar /carts.jar
 
