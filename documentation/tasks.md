@@ -2,6 +2,7 @@
 
 # Day1 - Sunday
 ## Start of the day
+![Day1 0](https://user-images.githubusercontent.com/66031162/96114269-1018d400-0eee-11eb-9481-8d145352e6bb.png)
 ## End of the day
 
 # Day2 - Monday
