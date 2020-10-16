@@ -1,11 +1,13 @@
----
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-end
-  namespace: sock-shop
+  namespace: test
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      name: front-end
   template:
     metadata:
       labels:
@@ -13,7 +15,7 @@ spec:
     spec:
       containers:
       - name: front-end
-        image: amerahsultan1/front-end:0.3.12
+        image: amerahsultan1/front-end
         resources:
           limits:
             cpu: 300m
