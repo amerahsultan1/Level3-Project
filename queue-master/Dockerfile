@@ -5,6 +5,7 @@ copy pom.xml /tmp/
 run mvn clean package
 
 FROM java:openjdk-8-alpine
+
 COPY --from=build /tmp/target/queue-master.jar /queue-master.jar
 
 ENV	SERVICE_USER=myuser \
