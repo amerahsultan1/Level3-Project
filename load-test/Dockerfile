@@ -10,7 +10,7 @@ ADD runLocust.sh /usr/local/bin/runLocust.sh
 
 ENV LOCUST_FILE /config/locustfile.py
 
-EXPOSE 8030
+EXPOSE 8089
 
 RUN chmod +x /usr/local/bin/runLocust.sh
 ENTRYPOINT ["/usr/local/bin/runLocust.sh"]
