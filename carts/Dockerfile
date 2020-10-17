@@ -5,11 +5,11 @@ copy . /carts
 
 RUN mvn clean package
 
-from adoptopenjdk/openjdk11:alpine
+FROM adoptopenjdk/openjdk11:alpine
 
 COPY --from=build /carts/target/carts.jar /carts.jar
 
-run chmod a+rx ./carts.jar
+RUN chmod a+rx ./carts.jar
 
 USER ${SERVICE_USER}
 
