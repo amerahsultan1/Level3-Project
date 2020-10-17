@@ -1,4 +1,5 @@
 # Daily Notes
 ## Day1 - Sunday
-Clone 
+* Clone
+* add
 ### Issues
