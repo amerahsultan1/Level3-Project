@@ -30,3 +30,16 @@
 * The carts image doesn’t work, so fix that with checkout to 0.4.8 version and build, run complete successfully.
 
 ## Day3 - Tusday
+
+* Edit the orders, payment, shipping and queue-master multi-stag images, build and run complete successfully.
+
+![orderscurl](https://user-images.githubusercontent.com/66031162/96353318-6f840900-10d3-11eb-9da9-6f26a7e8493a.png)
+![paymentcurl](https://user-images.githubusercontent.com/66031162/96353322-7c086180-10d3-11eb-8bfe-30ced7030580.png)
+![queuecurl](https://user-images.githubusercontent.com/66031162/96353325-862a6000-10d3-11eb-9066-243ab9a6f226.png)
+![shippingcurl](https://user-images.githubusercontent.com/66031162/96353332-904c5e80-10d3-11eb-86bb-74a967479f6a.png)
+
+### Obsticales
+* Error in payment image in set capabilities in file app, so solve this problem by adding app/main.
+
+* Face problem in queue-master image, solve it by remove the dependencies in pom.xml file.    
+
