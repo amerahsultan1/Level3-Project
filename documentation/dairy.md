@@ -41,5 +41,17 @@
 ### Obsticales
 * Error in payment image in set capabilities in file app, so solve this problem by adding app/main.
 
-* Face problem in queue-master image, solve it by remove the dependencies in pom.xml file.    
+* Face problem in queue-master image, solve it by remove the dependencies in pom.xml file.
+
+## Day4 - Wednesday
+* Run Sandbox, create cluster, install Tekton to automate the images, push all images to docker hub after creating the following files: secret, Taske, TaskRun, PipelineResource and ServiceAccount. 
+
+* Successed to push all images to docker hub.
+
+### Obsticales
+* Get errors that the resources cant access, solve this issue by making the github repo public. 
+
+* run the secret file in default namespace, and other files in test namespace.
+
+
 
