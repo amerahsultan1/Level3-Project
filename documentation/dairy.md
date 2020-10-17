@@ -53,5 +53,11 @@
 
 * run the secret file in default namespace, and other files in test namespace.
 
+## Day5 - Thursday
+* To make sure that all images are work, I create “sock-shop” network in sandbox, to run all images in the same network. Run the public database images which are: mongo:3.4 for user and orders. Rabbitmq fot queue-master.
+
+![docker-ps](https://user-images.githubusercontent.com/66031162/96353774-dacfda00-10d7-11eb-8ae9-fdad3e7213cf.png)
+
+
 
 
