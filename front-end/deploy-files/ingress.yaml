@@ -13,3 +13,8 @@ spec:
         backend:
           serviceName: front-end
           servicePort: 8079
+      - path: /carts
+        backend:
+          serviceName: carts
+          servicePort: 80
+
