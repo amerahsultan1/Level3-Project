@@ -4,7 +4,6 @@ metadata:
   name: front-end
   labels:
     name: front-end
-  namespace: test
 spec:
   type: NodePort
   ports:

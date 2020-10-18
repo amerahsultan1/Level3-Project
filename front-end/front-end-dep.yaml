@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-end
-  namespace: test
 spec:
   replicas: 1
   selector:
@@ -24,17 +23,6 @@ spec:
             cpu: 100m
             memory: 300Mi
         ports:
-        - containerPort: 8079
-        env:
-        - name: SESSION_REDIS
-          value: "true"
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 10001
-          capabilities:
-            drop:
-              - all
-          readOnlyRootFilesystem: true
         livenessProbe:
           httpGet:
             path: /
