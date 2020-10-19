@@ -6,7 +6,6 @@ WORKDIR /go/src/github.com/microservices-demo/catalogue
 RUN go get -u github.com/FiloSottile/gvt
 RUN gvt restore && \
     CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app github.com/microservices-demo/catalogue/cmd/cataloguesvc
-
 FROM alpine:3.4
 
 ENV	SERVICE_USER=myuser \
@@ -26,8 +25,7 @@ RUN	chmod +x /app && \
 	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app /images && \
 	setcap 'cap_net_bind_service=+ep' /app
 
-USER ${SERVICE_USER}
-
+#USER ${SERVICE_USER}
 ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG COMMIT
