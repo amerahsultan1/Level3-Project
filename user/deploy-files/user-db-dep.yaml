@@ -1,13 +1,14 @@
----
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user-db
   labels:
     name: user-db
-  namespace: sock-shop
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      name: user-db
   template:
     metadata:
       labels:
@@ -15,20 +16,11 @@ spec:
     spec:
       containers:
       - name: user-db
-        image: amerahsultan1/user-db:0.3.0
+        image: amerahsultan1/user-db
 
         ports:
         - name: mongo
           containerPort: 27017
-        securityContext:
-          capabilities:
-            drop:
-              - all
-            add:
-              - CHOWN
-              - SETGID
-              - SETUID
-          readOnlyRootFilesystem: true
         volumeMounts:
         - mountPath: /tmp
           name: tmp-volume
