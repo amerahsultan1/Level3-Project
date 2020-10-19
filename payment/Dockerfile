@@ -29,7 +29,7 @@ WORKDIR /
 EXPOSE 80
 
 
-RUN     chmod +x /app && \
+RUN     chmod +x /app/main && \
         chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app/main && \
         setcap 'cap_net_bind_service=+ep' /app/main
 
