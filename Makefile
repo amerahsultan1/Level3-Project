@@ -49,8 +49,31 @@ push-images:
 	kubectl create -f ./carts/tkn-docker/task-carts.yaml -n test
 	kubectl create -f ./carts/tkn-docker/TaskRun-carts.yaml -n test
 
-deploy: 
+deploy-sockshop:
+	kubectl apply -f ./front-end/deploy-files/front-end-dep.yaml -n test
+	kubectl apply -f ./front-end/deploy-files/front-end-svc.yaml -n test
 	kubectl apply -f ./front-end/deploy-files/ingress.yaml -n test
+	kubectl apply -f ./carts/deploy-files/carts-db-dep.yaml -n test
+	kubectl apply -f ./carts/deploy-files/carts-db-svc.yaml -n test
+	kubectl apply -f ./carts/deploy-files/carts-dep.yaml -n test
+	kubectl apply -f ./carts/deploy-files/carts-svc.yml -n test
+	kubectl apply -f ./catalogue/deploy-files/catalogue-db-dep.yaml -n test
+	kubectl apply -f ./catalogue/deploy-files/catalogue-db-svc.yaml -n test
+	kubectl apply -f ./catalogue/deploy-files/catalogue-dep.yaml -n test
+	kubectl apply -f ./catalogue/deploy-files/catalogue-svc.yaml -n test
+	kubectl apply -f ./orders/deploy-files/orders-db-dep.yaml -n test
+	kubectl apply -f ./orders/deploy-files/orders-db-svc.yaml -n test
+	kubectl apply -f ./orders/deploy-files/orders-dep.yaml -n test
+	kubectl apply -f ./orders/deploy-files/orders-svc.yaml -n test
+	kubectl apply -f ./payment/deploy-files/payment-dep.yaml -n test
+	kubectl apply -f ./payment/deploy-files/payment-svc.yaml -n test
+	kubectl apply -f ./shipping/deploy-files/shipping-dep.yaml -n test
+	kubectl apply -f ./shipping/deploy-files/shipping-svc.yaml -n test
+	kubectl apply -f ./user/deploy-files/user-db-dep.yaml -n test
+	kubectl apply -f ./user/deploy-files/user-db-svc.yaml -n test
+	kubectl apply -f ./user/deploy-files/user-dep.yaml -n test
+	kubectl apply -f ./user/deploy-files/user-svc.yaml -n test	
+	
  
 
 
