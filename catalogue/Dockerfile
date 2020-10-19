@@ -19,12 +19,12 @@ RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
 	apk add --update libcap
 
 WORKDIR /
-COPY --from=0 /app/main /app/main
+COPY --from=0 /app /app
 COPY images/ /images/
 
-RUN	chmod +x /app/main && \
-	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app/main /images && \
-	setcap 'cap_net_bind_service=+ep' /app/main
+RUN	chmod +x /app && \
+	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app /images && \
+	setcap 'cap_net_bind_service=+ep' /app
 
 USER ${SERVICE_USER}
 
@@ -42,5 +42,5 @@ LABEL org.label-schema.vendor="amerahsultan1" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 
-CMD ["/app/main", "-port=80"]
+CMD ["/app", "-port=80"]
 EXPOSE 80
