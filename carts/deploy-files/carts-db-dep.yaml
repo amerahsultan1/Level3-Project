@@ -5,10 +5,10 @@ metadata:
   labels:
     name: carts-db
 spec:
-  replicas: 1
   selector:
     matchLabels:
       name: carts-db
+  replicas: 1
   template:
     metadata:
       labels:
