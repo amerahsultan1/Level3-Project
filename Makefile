@@ -2,6 +2,13 @@ init:
 	git clone https://github.com/amerahsultan1/k8s-sandbox.git
 	cd k8s-sandbox && make up && make install-cicd && make install-ingress
 
+
+secret-docker: 		
+	kubectl create secret generic regcred \
+ 	--from-file=.dockerconfigjson=/home/ubuntu/.docker/config.json \
+ 	--type=kubernetes.io/dockerconfigjson -n test
+
+
 push-images: 
 		
 	kubectl create -f ./catalogue/tkn-docker/sa-catalogue.yaml -n test
