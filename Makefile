@@ -72,7 +72,8 @@ deploy-sockshop:
 	kubectl apply -f ./user/deploy-files/user-db-dep.yaml -n test
 	kubectl apply -f ./user/deploy-files/user-db-svc.yaml -n test
 	kubectl apply -f ./user/deploy-files/user-dep.yaml -n test
-	kubectl apply -f ./user/deploy-files/user-svc.yaml -n test	
+	kubectl apply -f ./user/deploy-files/user-svc.yaml -n test
+	kubectl apply -f ./load-test/loadtest-dep.yaml -n test	
 	
  
 
