@@ -1,16 +1,15 @@
-FROM maven:3-jdk-8 as build
-WORKDIR /tmp
+FROM maven:3-jdk-11 as build
+WORKDIR /carts
 
-copy src /tmp/src
-copy pom.xml /tmp/
+copy . /carts
 
-run mvn clean package
+RUN mvn clean package
 
-from adoptopenjdk/openjdk8:alpine
+FROM adoptopenjdk/openjdk11:alpine
 
-COPY --from=build /tmp/target/carts.jar /carts.jar
+COPY --from=build /carts/target/carts.jar /carts.jar
 
-run chmod a+rx ./carts.jar
+RUN chmod a+rx ./carts.jar
 
 USER ${SERVICE_USER}
 
@@ -23,9 +22,9 @@ LABEL org.label-schema.vendor="amerahsultan1" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: carts" \
   org.label-schema.description="REST API for carts service" \
-  org.label-schema.url="https://github.com/amerahsultan1/level3-project/carts" \ 
-  org.label-schema.vcs-url="github.com:amerahsultan1/level3-project/carts.git" \ 
+  org.label-schema.url="https://github.com/amerahsultan1/level3-project/carts" \
+  org.label-schema.vcs-url="github.com:amerahsultan1/level3-project/carts.git" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 
-ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./carts.jar", "--port=80"]
+ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./carts.jar", "--port=80"]                                                          
