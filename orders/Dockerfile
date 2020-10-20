@@ -1,14 +1,15 @@
 FROM maven:3-jdk-11 as build
-WORKDIR /orders
 
-copy . /orders
+WORKDIR /tmp
 
+copy src /tmp/src
+copy pom.xml /tmp/
 
 run mvn clean package
 
 from adoptopenjdk/openjdk11:alpine
 
-COPY --from=build /orders/target/orders.jar /orders.jar
+COPY --from=build /tmp/target/orders.jar /orders.jar
 
 run chmod a+rx ./orders.jar
 
