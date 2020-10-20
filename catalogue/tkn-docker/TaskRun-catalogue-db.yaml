@@ -3,7 +3,7 @@ kind: TaskRun
 metadata:
   name: catalogue-db-runner
 spec:
-  serviceAccountName: catalogue-docker-hub
+  serviceAccountName: amerah-docker-hub
   taskRef:
     name: catalogue-db
   params:

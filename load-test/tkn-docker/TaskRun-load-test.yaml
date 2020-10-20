@@ -3,7 +3,7 @@ kind: TaskRun
 metadata:
   name: load-test-runner
 spec:
-  serviceAccountName: load-test-docker-hub
+  serviceAccountName: amerah-docker-hub
   taskRef:
     name: load-test
   params:

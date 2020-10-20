@@ -3,7 +3,7 @@ kind: TaskRun
 metadata:
   name: e2e-tests-runner
 spec:
-  serviceAccountName: e2e-tests-docker-hub
+  serviceAccountName: amerah-docker-hub
   taskRef:
     name: e2e-tests
   params:

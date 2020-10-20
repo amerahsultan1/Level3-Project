@@ -3,7 +3,7 @@ kind: TaskRun
 metadata:
   name: payment-runner
 spec:
-  serviceAccountName: payment-docker-hub
+  serviceAccountName: amerah-docker-hub
   taskRef:
     name: payment
   params:
