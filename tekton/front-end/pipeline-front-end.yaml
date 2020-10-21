@@ -9,7 +9,9 @@ spec:
   params:
     - name: CONTEXT
       description: The path to the build context, used by Kaniko - within the workspace
-      default: /workspace/level3-project/front-end
+    - name: IMAGE
+      description: Name (reference) of the image to build.
+      type: string
     - name: pathToYamlFile
       description: The path to the yaml file to deploy within the git source
     - name: imageUrl
@@ -17,25 +19,23 @@ spec:
     - name: imageTag
       description: Tag to apply to the built image
   tasks:
-  - name: source-to-image
+  - name: build-push-image
     taskRef:
       name: front-end
     params:
       - name: CONTEXT
         value: "$(params.CONTEXT)"
-      - name: imageUrl
-        value: "$(params.imageUrl)"
-      - name: imageTag
-        value: "$(params.imageTag)"
+      - name: IMAGE
+        value: "$(params.IMAGE)"
     resources:
       inputs:
-        - name: git-source
+        - name: level3-project
           resource: level3-project
-  - name: deploy-to-cluster
+  - name: deploy-socks-shop
     taskRef:
       name: front-end-deploy
     runAfter:
-      - source-to-image
+      - build-push-image
     params:
       - name: pathToYamlFile
         value:  "$(params.pathToYamlFile)"
@@ -45,5 +45,5 @@ spec:
         value: "$(params.imageTag)"
     resources:
       inputs:
-        - name: git-source
+        - name: level3-project
           resource: level3-project

@@ -10,10 +10,15 @@ spec:
       resourceRef:
         name: front-end-resource
   params:
+    - name: CONTEXT
+      value: /workspace/level3-project/front-end
     - name: pathToYamlFile
       value: /workspace/level3-project/deployment/front-end
     - name: imageUrl
       value: amerahsultan1/front-end
     - name: imageTag
       value: "latest"
+    - name: IMAGE
+      value: amerahsultan1/front-end
+      
   serviceAccountName: amerah-docker-hub

@@ -3,29 +3,33 @@ kind: Task
 metadata:
   name: front-end-deploy
 spec:
-    params:
-      - name: pathToYamlFile
-        description: The path to the yaml file to deploy within the git source
-        default: /workspace/level3-project/deployment/front-end
-      - name: imageUrl
-        description: Url of image repository
-        default: amerahsultan1/front-end
-      - name: imageTag
-        description: Tag of the images to be used.
-        default: "latest"
-    steps:
-    - name: update-yaml
-      image: alpine
-      command: ["sed"]
-      args:
-        - "-i"
-        - "-e"
-        - "s;__IMAGE__;$(inputs.params.imageUrl):$(inputs.params.imageTag);g"
-        - "/workspace/$(inputs.params.pathToYamlFile)"
-    - name: run-kubectl
-      image: lachlanevenson/k8s-kubectl
-      command: ["kubectl"]
-      args:
-        - "apply"
-        - "-f"
-        - "/workspace/$(inputs.params.pathToYamlFile)"
+  resources:
+    inputs:
+    - name: level3-project
+      type: git
+  params:
+  - name: pathToYamlFile
+    description: The path to the yaml file to deploy within the git source
+    default: /workspace/level3-project/deployment/front-end
+  - name: imageUrl
+    description: Url of image repository
+    default: amerahsultan1/front-end
+  - name: imageTag
+    description: Tag of the images to be used.
+    default: "latest"
+  steps:
+  - name: update-yaml
+    image: alpine
+    command: ["sed"]
+    args:
+      - "-i"
+      - "-e"
+      - "s;__IMAGE__;$(inputs.params.imageUrl):$(inputs.params.imageTag);g"
+      - "/workspace/$(inputs.params.pathToYamlFile)"
+  - name: run-kubectl
+    image: lachlanevenson/k8s-kubectl
+    command: ["kubectl"]
+    args:
+      - "apply"
+      - "-f"
+      - "/workspace/$(inputs.params.pathToYamlFile)"
