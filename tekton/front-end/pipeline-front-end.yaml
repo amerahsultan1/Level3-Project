@@ -1,0 +1,49 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: front-end-pipeline
+spec:
+  resources:
+    - name: level3-project
+      type: git
+  params:
+    - name: CONTEXT
+      description: The path to the build context, used by Kaniko - within the workspace
+      default: /workspace/level3-project/front-end
+    - name: pathToYamlFile
+      description: The path to the yaml file to deploy within the git source
+    - name: imageUrl
+      description: Url of image repository
+    - name: imageTag
+      description: Tag to apply to the built image
+  tasks:
+  - name: source-to-image
+    taskRef:
+      name: front-end
+    params:
+      - name: CONTEXT
+        value: "$(params.CONTEXT)"
+      - name: imageUrl
+        value: "$(params.imageUrl)"
+      - name: imageTag
+        value: "$(params.imageTag)"
+    resources:
+      inputs:
+        - name: git-source
+          resource: level3-project
+  - name: deploy-to-cluster
+    taskRef:
+      name: front-end-deploy
+    runAfter:
+      - source-to-image
+    params:
+      - name: pathToYamlFile
+        value:  "$(params.pathToYamlFile)"
+      - name: imageUrl
+        value: "$(params.imageUrl)"
+      - name: imageTag
+        value: "$(params.imageTag)"
+    resources:
+      inputs:
+        - name: git-source
+          resource: level3-project

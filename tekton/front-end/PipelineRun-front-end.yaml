@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: front-end-pipelinerun 
+spec:
+  pipelineRef:
+    name: front-end-pipeline
+  resources:
+    - name: level3-project
+      resourceRef:
+        name: front-end-resource
+  params:
+    - name: pathToYamlFile
+      value: /workspace/level3-project/deployment/front-end
+    - name: imageUrl
+      value: amerahsultan1/front-end
+    - name: imageTag
+      value: "latest"
+  serviceAccountName: amerah-docker-hub
