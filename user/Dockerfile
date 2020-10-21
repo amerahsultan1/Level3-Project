@@ -2,7 +2,6 @@ FROM golang:1.7-alpine
 ENV sourcesdir /go/src/github.com/microservices-demo/user/
 ENV MONGO_HOST user-db:27017
 ENV HATEAOS user
-ENV HATEOAS user
 ENV USER_DATABASE mongodb
 
 COPY . ${sourcesdir}
