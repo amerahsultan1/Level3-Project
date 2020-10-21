@@ -10,13 +10,10 @@ spec:
   params:
   - name: pathToYamlFile
     description: The path to the yaml file to deploy within the git source
-    default: /workspace/level3-project/deployment/front-end
   - name: imageUrl
     description: Url of image repository
-    default: amerahsultan1/front-end
   - name: imageTag
     description: Tag of the images to be used.
-    default: "latest"
   steps:
   - name: update-yaml
     image: alpine
