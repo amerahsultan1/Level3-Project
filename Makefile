@@ -22,8 +22,12 @@ push-images:
 	kubectl create -f ./tekton/front-end/PipelineRun-front-end.yaml -n test
 	
 	kubectl create -f ./tekton/catalogue/PipelineResource-catalogue.yaml -n test
+	kubectl create -f ./tekton/catalogue/task-catalogue-db.yaml -n test
+	kubectl create -f ./tekton/catalogue/task-catalogue-db-dep.yaml -n test
 	kubectl create -f ./tekton/catalogue/task-catalogue.yaml -n test
-	kubectl create -f ./tekton/catalogue/TaskRun-catalogue.yaml -n test
+	kubectl create -f ./tekton/catalogue/task-catalogue-dep.yaml -n test
+	kubectl create -f ./tekton/catalogue/pipeline-catalogue.yaml -n test
+	kubectl create -f ./tekton/catalogue/PipelineRun-catalogue.yaml -n test
 	
 	kubectl create -f ./tekton/edge-router/PipelineResource-edge-router.yaml -n test
 	kubectl create -f ./tekton/edge-router/task-edge-router.yaml -n test
@@ -53,8 +57,12 @@ push-images:
 	kubectl create -f ./tekton/shipping/PipelineRun-shipping.yaml -n test
 
 	kubectl create -f ./tekton/user/PipelineResource-user.yaml -n test
+	kubectl create -f ./tekton/user/task-user-db.yaml -n test
+	kubectl create -f ./tekton/user/task-user-db-dep.yaml -n test
 	kubectl create -f ./tekton/user/task-user.yaml -n test
-	kubectl create -f ./tekton/user/TaskRun-user.yaml -n test
+	kubectl create -f ./tekton/user/task-user-dep.yaml -n test
+	kubectl create -f ./tekton/user/pipeline-user.yaml -n test
+	kubectl create -f ./tekton/user/PipelineRun-user.yaml -n test
 	
 	kubectl create -f ./tekton/queue-master/PipelineResource-queue-master.yaml -n test
 	kubectl create -f ./tekton/queue-master/task-queue-master.yaml -n test
