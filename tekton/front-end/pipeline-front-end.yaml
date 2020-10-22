@@ -13,6 +13,9 @@ spec:
     - name: IMAGE
       description: Name (reference) of the image to build.
       type: string
+    - name: DOCKERFILE
+      description: Path to the Dockerfile to build.
+      type: string
     - name: pathToYamlFile
       description: The path to the yaml file to deploy within the git source
       type: string
@@ -31,6 +34,8 @@ spec:
         value: "$(params.CONTEXT)"
       - name: IMAGE
         value: "$(params.IMAGE)"
+      - name: DOCKERFILE
+        value: "$(params.DOCKERFILE)"
     resources:
       inputs:
         - name: level3-project
