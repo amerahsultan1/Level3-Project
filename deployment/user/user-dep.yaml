@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: amerahsultan1/user
+        image: __IMAGE__
         resources:
           limits:
             cpu: 300m
@@ -43,3 +43,18 @@ spec:
           periodSeconds: 3
       nodeSelector:
         beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user
+  labels:
+    name: user
+spec:
+  type: NodePort
+  ports:
+    # the port that this service should serve on
+  - port: 80
+    targetPort: 80
+  selector:
+    name: user

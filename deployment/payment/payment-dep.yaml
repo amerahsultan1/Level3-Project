@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: payment
-        image: amerahsultan1/payment
+        image: __IMAGE__
         resources:
           limits:
             cpu: 100m
@@ -40,3 +40,17 @@ spec:
           periodSeconds: 3
       nodeSelector:
         beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment
+  labels:
+    name: payment
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 80
+    targetPort: 80
+  selector:
+    name: payment

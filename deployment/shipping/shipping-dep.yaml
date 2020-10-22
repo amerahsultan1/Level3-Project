@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: shipping
-        image: amerahsultan1/shipping
+        image: __IMAGE__
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
@@ -52,3 +52,18 @@ spec:
             medium: Memory
       nodeSelector:
         beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping
+  labels:
+    name: shipping
+spec:
+  type: NodePort
+  ports:
+    # the port that this service should serve on
+  - port: 80
+    targetPort: 80
+  selector:
+    name: shipping
