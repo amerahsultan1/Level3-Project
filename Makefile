@@ -52,8 +52,6 @@ push-images:
 
 deploy-sockshop:
 	kubectl apply -f ./deployment/front-end/front-end-dep.yaml -n test
-	kubectl apply -f ./deployment/front-end/front-end-svc.yaml -n test
-	kubectl apply -f ./deployment/front-end/ingress.yaml -n test
 	kubectl apply -f ./deployment/carts/carts-db-dep.yaml -n test
 	kubectl apply -f ./deployment/carts/carts-db-svc.yaml -n test
 	kubectl apply -f ./deployment/carts/carts-dep.yaml -n test
