@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: catalogue-pipelinerun 
+spec:
+  pipelineRef:
+    name: catalogue-pipeline
+  resources:
+    - name: level3-project
+      resourceRef:
+        name: catalogue-resource
+  params:
+    - name: IMAGE-db
+      value: "amerahsultan1/catalogue-db"
+    - name: IMAGE
+      value: "amerahsultan1/catalogue"
+    - name: pathToYamlFile
+      value: "level3-project/deployment/catalogue/catalogue-dep.yaml"
+    - name: imageUrl
+      value: "amerahsultan1/catalogue"
+    - name: imageTag
+      value: "latest"
+    - name: pathToYamlFile-db
+      value: "level3-project/deployment/catalogue/catalogue-db-dep.yaml"
+    - name: imageUrl-db
+      value: "amerahsultan1/catalogue-db"
+    - name: imageTag-db
+      value: "latest"
+      
+  serviceAccountName: amerah-docker-hub
