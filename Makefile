@@ -11,9 +11,9 @@ secret-docker:
 
 push-images: 
 		
-	kubectl create -f ./tekton/sa-front-end.yaml -n test
 	kubectl create -f ./tekton/role.yaml -n test
 	kubectl create -f ./tekton/role-binding.yaml -n test
+	kubectl create -f ./tekton/sa-front-end.yaml -n test
 	kubectl create -f ./tekton/front-end/PipelineResource-front-end.yaml -n test
 	kubectl create -f ./tekton/front-end/task-front-end.yaml -n test
 	kubectl create -f ./tekton/front-end/task-front-end-dep.yaml -n test
