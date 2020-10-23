@@ -31,17 +31,20 @@ push-images:
 	kubectl create -f ./tekton/load-test/task-load-test-dep.yaml -n test
 	kubectl create -f ./tekton/load-test/pipeline-load-test.yaml -n test
 	kubectl create -f ./tekton/load-test/PipelineRun-load-test.yaml -n test
+	kubectl create -f ./tekton/queue-master/PipelineResource-queue-master.yaml -n test
+	kubectl create -f ./tekton/queue-master/task-queue-master.yaml -n test
+	kubectl create -f ./tekton/queue-master/task-queue-master-dep.yaml -n test
+	kubectl create -f ./tekton/queue-master/pipeline-queue-master.yaml -n test
+	kubectl create -f ./tekton/queue-master/PipelineRun-queue-master.yaml -n test
+	kubectl create -f ./tekton/rabbitmq/task-rabbitmq-dep.yaml -n test
+	kubectl create -f ./tekton/rabbitmq/pipeline-rabbitmq.yaml -n test
+	kubectl create -f ./tekton/rabbitmq/PipelineRun-rabbitmq.yaml -n test
 	kubectl create -f ./tekton/orders/PipelineResource-orders.yaml -n test
 	kubectl create -f ./tekton/orders/task-orders-db-dep.yaml -n test
 	kubectl create -f ./tekton/orders/task-orders.yaml -n test
 	kubectl create -f ./tekton/orders/task-orders-dep.yaml -n test
 	kubectl create -f ./tekton/orders/pipeline-orders.yaml -n test
 	kubectl create -f ./tekton/orders/PipelineRun-orders.yaml -n test
-	kubectl create -f ./tekton/payment/PipelineResource-payment.yaml -n test
-	kubectl create -f ./tekton/payment/task-payment.yaml -n test
-	kubectl create -f ./tekton/payment/task-payment-dep.yaml -n test
-	kubectl create -f ./tekton/payment/pipeline-payment.yaml -n test
-	kubectl create -f ./tekton/payment/PipelineRun-payment.yaml -n test
 	kubectl create -f ./tekton/shipping/PipelineResource-shipping.yaml -n test
 	kubectl create -f ./tekton/shipping/task-shipping.yaml -n test
 	kubectl create -f ./tekton/shipping/task-shipping-dep.yaml -n test
@@ -54,14 +57,11 @@ push-images:
 	kubectl create -f ./tekton/user/task-user-dep.yaml -n test
 	kubectl create -f ./tekton/user/pipeline-user.yaml -n test
 	kubectl create -f ./tekton/user/PipelineRun-user.yaml -n test
-	kubectl create -f ./tekton/queue-master/PipelineResource-queue-master.yaml -n test
-	kubectl create -f ./tekton/queue-master/task-queue-master.yaml -n test
-	kubectl create -f ./tekton/queue-master/task-queue-master-dep.yaml -n test
-	kubectl create -f ./tekton/queue-master/pipeline-queue-master.yaml -n test
-	kubectl create -f ./tekton/queue-master/PipelineRun-queue-master.yaml -n test
-	kubectl create -f ./tekton/rabbitmq/task-rabbitmq-dep.yaml -n test
-	kubectl create -f ./tekton/rabbitmq/pipeline-rabbitmq.yaml -n test
-	kubectl create -f ./tekton/rabbitmq/PipelineRun-rabbitmq.yaml -n test
+	kubectl create -f ./tekton/payment/PipelineResource-payment.yaml -n test
+	kubectl create -f ./tekton/payment/task-payment.yaml -n test
+	kubectl create -f ./tekton/payment/task-payment-dep.yaml -n test
+	kubectl create -f ./tekton/payment/pipeline-payment.yaml -n test
+	kubectl create -f ./tekton/payment/PipelineRun-payment.yaml -n test
 	#kubectl create -f ./tekton/e2e-tests/PipelineResource-e2e-tests.yaml -n test
 	#kubectl create -f ./tekton/e2e-tests/task-e2e-tests.yaml -n test
 	#kubectl create -f ./tekton/e2e-tests/TaskRun-e2e-tests.yaml -n test
