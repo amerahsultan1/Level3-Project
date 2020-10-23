@@ -13,7 +13,7 @@ spec:
     - name: pathToYamlFile
       value: "level3-project/deployment/rabbitmq/rabbitmq-dep.yaml"
     - name: imageUrl
-      value: "rabbitmq:3.6.8-management"
+      value: "rabbitmq"
     - name: imageTag
       value: "3.6.8-management"
       
