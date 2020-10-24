@@ -23,5 +23,5 @@ WORKDIR /e2e-test
 
 COPY . /e2e-test
 
-
+RUN npm install
 
