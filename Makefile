@@ -71,6 +71,13 @@ push-images:
 	kubectl create -f ./tekton/carts/task-carts-dep.yaml -n test
 	kubectl create -f ./tekton/carts/pipeline-carts.yaml -n test
 	kubectl create -f ./tekton/carts/PipelineRun-carts.yaml -n test
+	kubectl create -f ./tekton/e2e-js-test/PipelineResource-e2e-js-test.yaml -n  test
+	kubectl create -f ./tekton/e2e-js-test/task-e2e-js-test.yaml -n  test
+	kubectl create -f ./tekton/e2e-js-test/task-e2e-js-test-dep.yaml -n  test
+	kubectl create -f ./tekton/e2e-js-test/pipeline-e2e-js-test.yaml -n  test
+	kubectl create -f ./tekton/e2e-js-test/PipelineRun-e2e-js-test.yaml -n  test
+
+
 
 deploy-sockshop:
 	kubectl apply -f ./deployment/front-end/front-end-dep.yaml -n test
