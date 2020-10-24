@@ -6,12 +6,12 @@ files=$testfile
 
 if [ -z $testfile ]
 then
-  files=$(ls level3-project/e2e-js-test/*_test.js)
+  files=$(ls e2e-test/*_test.js)
 fi
 
 for test in $files
 do
-  node level3-project/e2e-js-test/test_helper.js
+  node e2e-test/test_helper.js
   casperjs test $test
   ret=$?
   if [ ! $ret == "0" ]; then code=1; fi
