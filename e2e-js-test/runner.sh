@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 code=0
 testfile=$1
