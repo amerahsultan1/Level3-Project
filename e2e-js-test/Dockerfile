@@ -21,7 +21,7 @@ RUN curl -Ls https://github.com/dustinblackman/phantomized/releases/download/2.1
   rm -rf /tmp/*
 WORKDIR /e2e-test
 
-COPY . .
+COPY . /e2e-test
 
 
 
