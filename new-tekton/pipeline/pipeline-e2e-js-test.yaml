@@ -16,9 +16,6 @@ spec:
     - name: CONTEXT
       type: string
       default: "/workspace/level3-project/e2e-js-test"
-    - name: pathToYamlFile
-      type: string
-      default: "level3-project/deployment/e2e-js-test/e2e-js-test-dep.yaml"
     - name: imageUrl
       type: string
       default: "amerahsultan1/e2e-js-test"
@@ -40,14 +37,12 @@ spec:
       inputs:
         - name: level3-project
           resource: level3-project
-  - name: test-deploy
+  - name: run-test
     taskRef:
-      name: deploy-task
+      name: run-e2e-test-task
     runAfter:
       - build-push-image
     params:
-      - name: pathToYamlFile
-        value:  "$(params.pathToYamlFile)"
       - name: imageUrl
         value: "$(params.imageUrl)"
       - name: imageTag
