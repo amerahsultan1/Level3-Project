@@ -65,13 +65,13 @@
 
     // actually checkout
     casper.then(function() {
-      this.waitForText("My orders", function() {
+      this.waitForText("orders", function() {
         test.pass("user is taken to the orders page");
       }, function() {
-        console.log("dumping page screenshot as PNG")
-        var cap = casper.captureBase64("png");
-        console.log(cap);
-        console.log("DONE");
+       //console.log("dumping page screenshot as PNG")
+       //var cap = casper.captureBase64("png");
+       //console.log(cap);
+       //console.log("DONE");
         test.fail("user was not taken to the orders page");
       }, 3000);
     });
