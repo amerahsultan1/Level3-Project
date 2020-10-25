@@ -12,7 +12,7 @@
         test.assertVisible("#login-modal", "user is presented with the login dialogue");
         this.fill("#login-modal form", {
           "username": "Eve_Berger",
-          "password": "duis"
+          "password": "eve"
         }, false);
       }, function() {
         test.fail("login dialogue never showed up");
