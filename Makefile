@@ -1,3 +1,5 @@
+up: init secret-docker deploy-socks-shop pods-status e2e-js-test
+
 init:
 	git clone https://github.com/amerahsultan1/k8s-sandbox.git
 	cd k8s-sandbox && make up && make install-cicd && make install-ingress
@@ -9,7 +11,7 @@ secret-docker:
  	--type=kubernetes.io/dockerconfigjson -n test
 
 
-push-images: 
+deploy-socks-shop: 
 		
 	kubectl create -f ./tekton/role.yaml -n test
 	kubectl create -f ./tekton/role-binding.yaml -n test
@@ -46,10 +48,28 @@ push-images:
 	kubectl create -f ./tekton/pipelinerun/PipelineRun-carts.yaml -n test
 	kubectl create -f ./tekton/pipeline/pipeline-load-test.yaml -n test
 	kubectl create -f ./tekton/pipelinerun/PipelineRun-load-test.yaml -n test
+
+e2e-js-test:
 	kubectl create -f ./tekton/tasks/run-e2e.yaml -n test
 	kubectl create -f ./tekton/pipeline/pipeline-e2e-js-test.yaml -n  test
 	kubectl create -f ./tekton/pipelinerun/PipelineRun-e2e-js-test.yaml -n  test
+	kubectl create -f ./tekton/tasks/deploy-prod-task.yaml -n test
 
+pods-status: 
+	kubectl wait --namespace test --for=condition=ready pods -l name=rabbitmq --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=front-end --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=user-db --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=user --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=shipping --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=payment --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=orders-db --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=orders --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=catalogue-db --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=catalogue --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=carts-db --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=carts --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=queue-master --timeout=900s
+	kubectl wait --namespace test --for=condition=ready pods -l name=load-test --timeout=900s
 
 
 deploy-sockshop:
