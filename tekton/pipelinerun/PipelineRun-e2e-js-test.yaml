@@ -16,5 +16,6 @@ spec:
       value: "latest"
     - name: IMAGE
       value: "amerahsultan1/e2e-js-test"
-      
+    - name: pathToYamlFile
+      value: "level3-project/deployment/deploy-prod.yaml"
   serviceAccountName: amerah-docker-hub
