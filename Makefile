@@ -51,9 +51,10 @@ deploy-socks-shop:
 
 e2e-js-test:
 	kubectl create -f ./tekton/tasks/run-e2e.yaml -n test
-	kubectl create -f ./tekton/pipeline/pipeline-e2e-js-test.yaml -n  test
+        kubectl apply -f ./tekton/tasks/deploy-prod-task.yaml -n test
+        kubectl create -f ./tekton/pipeline/pipeline-e2e-js-test.yaml -n  test
 	kubectl create -f ./tekton/pipelinerun/PipelineRun-e2e-js-test.yaml -n  test
-	kubectl create -f ./tekton/tasks/deploy-prod-task.yaml -n test
+	
 
 pods-status: 
 	cd tekton && ./check.sh
