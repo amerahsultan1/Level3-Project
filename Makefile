@@ -56,7 +56,7 @@ e2e-js-test:
 	kubectl create -f ./tekton/tasks/deploy-prod-task.yaml -n test
 
 pods-status: 
-	./check.sh
+	cd tekton && ./check.sh
 
 
 deploy-sockshop:
