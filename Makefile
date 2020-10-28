@@ -1,4 +1,4 @@
-up: init secret-docker deploy-socks-shop pods-status e2e-js-test
+up: init secret-docker deploy-socks-shop pods-status run-js-test
 
 init:
 	git clone https://github.com/amerahsultan1/k8s-sandbox.git
@@ -49,14 +49,15 @@ deploy-socks-shop:
 	kubectl create -f ./tekton/pipeline/pipeline-load-test.yaml -n test
 	kubectl create -f ./tekton/pipelinerun/PipelineRun-load-test.yaml -n test
 
-e2e-js-test:
+run-js-test:
 	kubectl create -f ./tekton/tasks/run-e2e.yaml -n test
-	kubectl create -f ./tekton/pipeline/pipeline-e2e-js-test.yaml -n  test
+        kubectl apply -f ./tekton/tasks/deploy-prod-task.yaml -n test
+        kubectl create -f ./tekton/pipeline/pipeline-e2e-js-test.yaml -n  test
 	kubectl create -f ./tekton/pipelinerun/PipelineRun-e2e-js-test.yaml -n  test
-	kubectl create -f ./tekton/tasks/deploy-prod-task.yaml -n test
+	
 
 pods-status: 
-	./check.sh
+	cd tekton && ./check.sh
 
 
 deploy-sockshop:
