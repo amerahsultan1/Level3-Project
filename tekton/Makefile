@@ -1,4 +1,4 @@
-run-socks-shop: deploy-microservices pods-status run-js-test  
+run: deploy-microservices pods-status run-js-test  
 
 deploy-microservices: 
 		
