@@ -1,7 +1,15 @@
-up: init secret-docker deploy-socks-shop pods-status run-js-test
+up: init secret-docker deploy-socks-shop pods-status run-js-test install-logging install-monitoring
 
 init:
-	cd k8s-sandbox && make up && make install-cicd && make install-ingress 
+	cd k8s-sandbox && make up && make install-cicd && make install-ingress
+
+install-logging: 
+	cd k8s-sandbox/elf
+	./elf.sh
+
+install-monitoring:
+	cd k8s-sandbox/grafana
+	./pro-graf.sh
 
 
 secret-docker: 		
