@@ -147,3 +147,13 @@ delete-logging:
 	helm delete fluent-bit -n logging | tee -a output.log 2>/dev/null | true
 	echo "Logging: delete-elasticsearch" | tee -a output.log
 	helm delete kibana elastic/kibana -n logging | tee -a output.log 2>/dev/null | true
+
+install-prm-graf:
+	cd grafana
+	./pro-graf.sh 
+	kubectl get service -n monitor
+
+install-elf:
+	cd elf
+	./elf.sh
+	kubectl get service -n logging
