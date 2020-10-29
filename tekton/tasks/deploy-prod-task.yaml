@@ -10,6 +10,8 @@ spec:
   params:
   - name: pathToYamlFile
     description: The path to the yaml file to deploy within the git source
+    type: string
+    default: "level3-project/deployment/deploy-prod.yaml"
   steps:
   - name: run-kubectl
     image: lachlanevenson/k8s-kubectl
