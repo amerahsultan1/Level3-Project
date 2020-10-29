@@ -61,3 +61,5 @@ delete-pipeline:
 
 delete-pipelinerun:
 	cd pipelinerun && kubectl delete -f . -n test
+
+down: delete-roles delete-pipelineresource delete-tasks delete-pipeline delete-pipelinerun 
