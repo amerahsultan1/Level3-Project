@@ -1,8 +1,7 @@
 up: init secret-docker deploy-socks-shop pods-status run-js-test
 
 init:
-	git clone https://github.com/amerahsultan1/k8s-sandbox.git
-	cd k8s-sandbox && make up && make install-cicd && make install-ingress
+	cd k8s-sandbox && make up && make install-cicd && make install-ingress && make install-monitoring &&
 
 
 secret-docker: 		
@@ -51,8 +50,8 @@ deploy-socks-shop:
 
 run-js-test:
 	kubectl create -f ./tekton/tasks/run-e2e.yaml -n test
-        kubectl apply -f ./tekton/tasks/deploy-prod-task.yaml -n test
-        kubectl create -f ./tekton/pipeline/pipeline-e2e-js-test.yaml -n  test
+	kubectl apply -f ./tekton/tasks/deploy-prod-task.yaml -n test
+	kubectl create -f ./tekton/pipeline/pipeline-e2e-js-test.yaml -n  test
 	kubectl create -f ./tekton/pipelinerun/PipelineRun-e2e-js-test.yaml -n  test
 	
 
