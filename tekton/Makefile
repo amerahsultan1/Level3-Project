@@ -1,4 +1,4 @@
-run: deploy-microservices pods-status run-js-test  
+run: deploy-microservices 
 
 deploy-microservices: 
 		
@@ -17,6 +17,9 @@ deploy-microservices:
 	kubectl create -f ./PipelineResource/PipelineResource-e2e-js-test.yaml -n  test
 	kubectl create -f ./tasks/build-push-task.yaml -n test
 	kubectl create -f ./tasks/deploy-task.yaml -n test
+	kubectl create -f ./tasks/wait-task.yaml -n test
+	kubectl create -f ./tasks/run-e2e.yaml -n test
+	kubectl apply -f ./tasks/deploy-prod-task.yaml -n test
 	kubectl create -f ./pipeline/pipeline-front-end.yaml -n test
 	kubectl create -f ./pipelinerun/PipelineRun-front-end.yaml -n test
 	kubectl create -f ./pipeline/pipeline-catalogue.yaml -n test
@@ -37,10 +40,6 @@ deploy-microservices:
 	kubectl create -f ./pipelinerun/PipelineRun-carts.yaml -n test
 	kubectl create -f ./pipeline/pipeline-load-test.yaml -n test
 	kubectl create -f ./pipelinerun/PipelineRun-load-test.yaml -n test
-
-run-js-test:
-	kubectl create -f ./tasks/run-e2e.yaml -n test
-	kubectl apply -f ./tasks/deploy-prod-task.yaml -n test
 	kubectl create -f ./pipeline/pipeline-e2e-js-test.yaml -n  test
 	kubectl create -f ./pipelinerun/PipelineRun-e2e-js-test.yaml -n  test
 
