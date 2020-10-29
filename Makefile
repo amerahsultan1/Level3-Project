@@ -1,7 +1,7 @@
 up: init secret-docker deploy-socks-shop pods-status run-js-test
 
 init:
-	cd k8s-sandbox && make up && make install-cicd && make install-ingress && make install-monitoring &&
+	cd k8s-sandbox && make up && make install-cicd && make install-ingress 
 
 
 secret-docker: 		
