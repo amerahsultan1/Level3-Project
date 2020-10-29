@@ -113,7 +113,7 @@ spec:
     params:
       - name: namespace
         value: "$(params.namespace)"
-      - name: serivce-name-db
+      - name: serivce-name
         value: "$(params.service-name-db)"
     resources:
       inputs:
