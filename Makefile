@@ -13,7 +13,7 @@ run-socks-shop:
 	cd tekton && make run
 
 install-tools:
-	cd k8s-sandbox && make install-prm-graf && install-elf
+	cd k8s-sandbox && make install-prm-graf && make install-elf
 
 list-tasktun:
 	tkn tr ls -n test
