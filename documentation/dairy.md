@@ -64,35 +64,73 @@
 
 
 ## Day6 - Wednesday
-* Start with create YAML files for all micro-services, acually it's all in the socks-shop demo in github, but it's need some changes. 
+* Start with create YAML files for all micro-services, acually it's all in the socks-shop demo in github, but it's need some changes.
+
+* I deploy the micro-services manually, if it's work, I start to automate them via Tekton, creating Task to deploy the services in test namespace, PipelineResource, Pipeline, PipelineRun.  
+
 * Edit the catalogue deploy and service files, add the dockerhub account and image name that I pushed before. 
-* Catalogue and Cataloge-db are deploy successfully.
+* Catalogue and Cataloge-db are deploy successfully. Automate them using Tekton. 
 
 ### Obsticales
-* had a problem when deploy the catalogue micro-service, the pod state shows CrashLoopBackOff, because of permission denied problem.
-solving this problem by editing the Dockerfile and remove (USER ${SERVICE_USER}). 
+* Have a problem when deploy the catalogue micro-service, the pod state shows CrashLoopBackOff, because of permission denied problem.
+solving this problem by editing the Dockerfile and remove (USER ${SERVICE_USER}). Push the image again, delete the pods, recreate it and it's work. 
 
 ## Day7 - Thursday
+* Edit the front-end yaml files by adding the image, ingress.yaml. at the end of the day it's work after suffering from simple mistake :) 
+
+### Obsticales
+* The front-end doesn't work at the first time, I thought that I'm using the wrong port, but after that I notice that I didn't Install an Ingress controller.  
 
 ## Day8 - Friday
+* Start with deploy carts and carts-db, everything is ok, day with no errors.  
 
 ## Day9 - Saturday
+* Have a diffecult time to deploy user micro-service as the Dockerfile need to be edit and push to Dockerhub again, since the old image was fine locally but when I start to deploy the service it doesn't work. after solve all errors and deploy it successfully, I start with user-db to deploy it, same things the cause of errors from the Dockerfile, fix it and the service deploy successfully. 
+
+### Obsticales
+* The user micro-service expose in port 8084, so I change it to 80 because it was show that the (connection reset by peer). 
+
+* The user-db logs shows permission denied problem from (mongo_create_insert.sh) script, so chmod the script and remove the (--shutdown) as the database logs will exit immediately.
 
 ## Day10 - Sunday
+* Deploy the orders micro-service and orders-db, the orders deploy successfully. The orders-db deploy by using public mongo image.  
 
 ## Day11 - Monday
+* Start with deploy the payment micro-service, the pod state is CrashLoopBackOff, and the logs shows the permission denied. Back to Dockerfile and discove that I witre the path /app without main. fix it, remove the pods and create it again, and it's work.       
 
 ## Day12 - Tusday
+* The shipping micro-service deploy successfully, without any errors :)
+
 
 ## Day13 - Wednesday
+* Also, working to complete the deployment, the load-test doesn't take much time, so spend the rest of the day to complete the Tikton pipelines for other services.
+* All micro-services deploy successfully
+
+![success](https://user-images.githubusercontent.com/66031162/97737294-dea72780-1aed-11eb-8348-b855a9e7d60d.png)
+
+* The Socks Shop website
+
+![webfinal](https://user-images.githubusercontent.com/66031162/97737539-35146600-1aee-11eb-8a1d-79bff706a0a0.png)
 
 ## Day14 - Thursday
+* After deploy all microservies through Tekton successfully, I start the e2e-js-test. First, edit the Dockerfile by adding WORKDIR and COPY the alpine node in it. Then push the image to Dockerhub.
+* Fix the path in runner.sh
+* Create Tekton Task to run the e2e-js-test.
+* Try to understand the e2e-js-test, search on the socks shop about the user and password they have. I fix the password to (eve).
+
+![userssss](https://user-images.githubusercontent.com/66031162/97738289-34c89a80-1aef-11eb-9f0c-815301b2bc6a.png)
 
 ## Day15 - Friday
+* Complete to fix e2e-js-test in order to pass all tests. Fix the login in checkout.test, as it's not lead the user to "my order" page.
 
 ## Day16 - Saturday
+* Also today not finish yet, complete working on e2e-js-test by edit the statement in homepage-test (get a pet hamster for free!), the right one is (get a shoe for free!). 
+
+### Obsticales
+* Suddenly catalogue micro-service doesn't work, i dont know the reason for that, the PipelineRun shows that the build-push task   
 
 ## Day17 - Sunday
+* Finally, all microservices pass the e2e-js-test successfully.  
 
 ## Day18 - Monday
 
