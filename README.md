@@ -28,7 +28,7 @@ make up
 make init
 ```
 
-* To have access to push the images you need to `login -u amerahsultan1`, amerahsultan1 is the username, and enter the password, after that the secret will created:
+* To have access to push the images you need to `docker login -u amerahsultan1`, amerahsultan1 is the username, and enter the password, after that the secret will created:
 ```bash
 make secret-docker
 ```
