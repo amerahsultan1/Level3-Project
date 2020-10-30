@@ -149,11 +149,9 @@ delete-logging:
 	helm delete kibana elastic/kibana -n logging | tee -a output.log 2>/dev/null | true
 
 install-prm-graf:
-	cd grafana
-	./pro-graf.sh 
+	. grafana/pro-graf.sh 
 	kubectl get service -n monitor
 
 install-elf:
-	cd elf
-	./elf.sh
+	. elf/elf.sh
 	kubectl get service -n logging
