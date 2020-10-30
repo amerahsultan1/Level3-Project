@@ -57,13 +57,20 @@
 ## Day5 - Tusday
 * Complete push remaining images to docker hub.
 
-
-## Day6 - Wednesday
 * To make sure that all images are work, I create “sock-shop” network in sandbox, to run all images in the same network. Run the public database images which are: mongo:3.4 for user and orders. Rabbitmq fot queue-master.
 
 ![docker-ps](https://user-images.githubusercontent.com/66031162/96353774-dacfda00-10d7-11eb-8ae9-fdad3e7213cf.png)
 ![web](https://user-images.githubusercontent.com/66031162/96353858-9bee5400-10d8-11eb-9495-d4b100b56a4f.png)
 
+
+## Day6 - Wednesday
+* Start with create YAML files for all micro-services, acually it's all in the socks-shop demo in github, but it's need some changes. 
+* Edit the catalogue deploy and service files, add the dockerhub account and image name that I pushed before. 
+* Catalogue and Cataloge-db are deploy successfully.
+
+### Obsticales
+* had a problem when deploy the catalogue micro-service, the pod state shows CrashLoopBackOff, because of permission denied problem.
+solving this problem by editing the Dockerfile and remove (USER ${SERVICE_USER}). 
 
 ## Day7 - Thursday
 
