@@ -72,7 +72,7 @@
 * Catalogue and Cataloge-db are deploy successfully. Automate them using Tekton. 
 
 ### Obsticales
-* Have a problem when deploy the catalogue micro-service, the pod state shows CrashLoopBackOff, because of permission denied problem.
+* Have a problem when deploy the catalogue micro-service, the pod status shows CrashLoopBackOff, because of permission denied problem.
 solving this problem by editing the Dockerfile and remove (USER ${SERVICE_USER}). Push the image again, delete the pods, recreate it and it's work. 
 
 ## Day7 - Thursday
@@ -96,7 +96,7 @@ solving this problem by editing the Dockerfile and remove (USER ${SERVICE_USER})
 * Deploy the orders micro-service and orders-db, the orders deploy successfully. The orders-db deploy by using public mongo image.  
 
 ## Day11 - Monday
-* Start with deploy the payment micro-service, the pod state is CrashLoopBackOff, and the logs shows the permission denied. Back to Dockerfile and discove that I witre the path /app without main. fix it, remove the pods and create it again, and it's work.       
+* Start with deploy the payment micro-service, the pod status is CrashLoopBackOff, and the logs shows the permission denied. Back to Dockerfile and discove that I witre the path /app without main. fix it, remove the pods and create it again, and it's work.       
 
 ## Day12 - Tusday
 * The shipping micro-service deploy successfully, without any errors :)
@@ -127,18 +127,36 @@ solving this problem by editing the Dockerfile and remove (USER ${SERVICE_USER})
 * Also today not finish yet, complete working on e2e-js-test by edit the statement in homepage-test (get a pet hamster for free!), the right one is (get a shoe for free!). 
 
 ### Obsticales
-* Suddenly catalogue micro-service doesn't work, i dont know the reason for that, the PipelineRun shows that the build-push task   
+* Suddenly catalogue micro-service doesn't work, i dont know the reason for that, the PipelineRun shows that the build-push task is failed. I decide to run it again tomorrow.    
 
 ## Day17 - Sunday
-* Finally, all microservices pass the e2e-js-test successfully.  
+* Start with catalogue, try to run the PipelineRun again and it was success.
+* Finally, all microservices pass the e2e-js-test successfully. Now, start to deploy them to (prod) namespace.   
 
 ## Day18 - Monday
+* Start with create yaml file for all micro-services, change the NodePort 30001 to 30002, since it used by front-end service in test namespace.
+* Create a deploy-prod.yaml task, to deploy all micro-services to prod namespace.
 
 ## Day19 - Tusday
+* Run the wait command via Makefile to check the pods status before run the test, using this command in makfile not a good idea. The Makefile will exit when the pods not ready or timeout the limit, I ask for help, and my frind show me a script by using Do While, so the command will never exit until the pods status ready.
+* Create a wait task to use it in all pipelines.
 
 ## Day20 - Wednesday
+* Add the wait task, deploy to prod task in all micro-services pipelines. Run them and some will failed, the aim is one or more micro-service will pass the test and go to deploy all micro-services in prod namespace.
+
+* List of PipelineRun
+![pass](https://user-images.githubusercontent.com/66031162/97744677-b96be680-1af8-11eb-9948-12790447344e.png)
+
+* All micro-services pass the e2e-js-test
+
+![passingg](https://user-images.githubusercontent.com/66031162/97744943-24b5b880-1af9-11eb-9747-779e5f2346f3.png)
+
+* The micro-services deploy on prod namespace
+
+![prodnamespace](https://user-images.githubusercontent.com/66031162/97745064-575fb100-1af9-11eb-9b37-ee84b77f22ec.png)
 
 ## Day21 - Thursday
+* Start to install elf and grafana tools, install them using helm.
 
 ## Day22 - Friday
-
+* Finishing up the repo, edit Makefiles and remove some files.
