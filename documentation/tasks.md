@@ -1,4 +1,4 @@
-# Dairy Trello for Level3-Project
+# Trello for Level3-Project
 
 ## Day1 - Friday
 ## Start of the day
