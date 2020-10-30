@@ -25,5 +25,5 @@ prod-pods:
 	kubectl get pods -n prod
 
 down-socks-shop:
-	cd k8s-sandbox && make down && make delete-cicd && make delete-ingress && cd ..
+	cd k8s-sandbox && make down && cd ..
 	cd tekton && make down && cd ..
