@@ -43,9 +43,6 @@ deploy-microservices:
 	kubectl create -f ./pipeline/pipeline-e2e-js-test.yaml -n  test
 	kubectl create -f ./pipelinerun/PipelineRun-e2e-js-test.yaml -n  test
 
-pods-status:
-	./check.sh
-
 delete-roles:
 	kubectl delete -f role.yaml -n test -f role-binding.yaml -n test -f sa-front-end.yaml -n test
 
