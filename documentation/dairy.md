@@ -1,9 +1,6 @@
 # Daily Notes
+
 ## Day1 - Friday
-
-## Day2 - Saturday
-
-## Day3 - Sunday
 * Discover the micro-services git hub account, to know how many micro-service we have, clone them in single repository. 
 
 * Start with front-end Dockerfile, to check if the Dockerfile need any changes before move to sandbox and automate the image using Tekton tool. Building and running Dockerfile successfully.
@@ -17,7 +14,7 @@
 
 *  Faced some obstacles to connect the catalogue-db with catalogue micro-service, it was easy when creating a network to connect all micro-service and run the website later. 
 
-## Day4 - Monday
+## Day2 - Saturday
 * Build and run e2e-tests, load-test, carts and user successfully.
 
 * Edit the carts multi-stage Dockerfile, since there is some errors in the latest one. 
@@ -33,7 +30,7 @@
 
 * The carts image doesn’t work, so fix that with checkout to 0.4.8 version and build, run complete successfully.
 
-## Day5 - Tusday
+## Day3 - Sunday
 
 * Edit the orders, payment, shipping and queue-master multi-stag images, build and run complete successfully.
 
@@ -47,7 +44,7 @@
 
 * Face problem in queue-master image, solve it by remove the dependencies in pom.xml file.
 
-## Day6 - Wednesday
+## Day4 - Monday
 * Run Sandbox, create cluster, install Tekton to automate the images, push all images to docker hub after creating the following files: secret, Taske, TaskRun, PipelineResource and ServiceAccount. 
 
 * Successed to push half of images to docker hub.
@@ -57,38 +54,46 @@
 
 * run the secret file in default namespace, and other files in test namespace.
 
-## Day7 - Thursday
+## Day5 - Tusday
 * Complete push remaining images to docker hub.
 
 
-## Day8 - Friday
+## Day6 - Wednesday
 * To make sure that all images are work, I create “sock-shop” network in sandbox, to run all images in the same network. Run the public database images which are: mongo:3.4 for user and orders. Rabbitmq fot queue-master.
 
 ![docker-ps](https://user-images.githubusercontent.com/66031162/96353774-dacfda00-10d7-11eb-8ae9-fdad3e7213cf.png)
 ![web](https://user-images.githubusercontent.com/66031162/96353858-9bee5400-10d8-11eb-9495-d4b100b56a4f.png)
 
 
+## Day7 - Thursday
+
+## Day8 - Friday
+
 ## Day9 - Saturday
+
 ## Day10 - Sunday
+
 ## Day11 - Monday
+
 ## Day12 - Tusday
+
 ## Day13 - Wednesday
+
 ## Day14 - Thursday
+
 ## Day15 - Friday
+
 ## Day16 - Saturday
+
 ## Day17 - Sunday
+
 ## Day18 - Monday
+
 ## Day19 - Tusday
+
 ## Day20 - Wednesday
+
 ## Day21 - Thursday
+
 ## Day22 - Friday
-
-
-
-
-
-
-
-
-
 
